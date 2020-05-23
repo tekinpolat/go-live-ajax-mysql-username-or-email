@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <title>Live Ajax Mysql Username Or Email</title>
+  </head>
+  <body>
+    <div class="container mt-3">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon1">@</span>
+					</div>
+					<input type="text" class="form-control" id="username" placeholder="Username" autocomplete="off">
+				</div>
+			</div>
+		</div>
+	</div>
+    <script src="static/js/jquery-3.5.1.min.js" ></script>
+    <script src="static/js/popper.min.js" ></script>
+    <script src="static/js/bootstrap.min.js" ></script>
+	<script>
+		$(document).ready(function(){
+			$("#username").keyup(function(){
+				const username = $(this).val();
+				$.post('/getUsername', {username:username}, function(response){
+				   response.length > 0 ? $('#username').removeClass('is-invalid').addClass('is-valid') :
+				   						 $('#username').removeClass('is-valid').addClass('is-invalid') ;
+				},'json');
+			});
+		});
+	</script>
+  </body>
+</html>
